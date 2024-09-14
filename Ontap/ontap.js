@@ -39,7 +39,7 @@
 // // arrow function
 // const message_a = (m) => m;
 
-// // arrow func khong viet duoc cho context
+// arrow func khong viet duoc cho context
 // const course = {
 //   name: "JS",
 //   getName: function () {
