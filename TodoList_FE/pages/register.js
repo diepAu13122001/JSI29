@@ -1,4 +1,4 @@
-export default class Login {
+export default class Register {
   constructor() {}
 
   render(mainContainer) {
@@ -16,7 +16,23 @@ export default class Login {
     // Tạo thẻ h2 tiêu đề
     const title = document.createElement("h2");
     title.className = "text-center mb-4";
-    title.innerText = "Login";
+    title.innerText = "Register";
+
+    // Tạo group cho email
+    const usernameGroup = document.createElement("div");
+    usernameGroup.className = "mb-3";
+    const usernameLabel = document.createElement("label");
+    usernameLabel.className = "form-label";
+    usernameLabel.setAttribute("for", "username");
+    usernameLabel.innerText = "Username";
+    const usernameInput = document.createElement("input");
+    usernameInput.className = "form-control";
+    usernameInput.setAttribute("type", "text");
+    usernameInput.setAttribute("id", "username");
+    usernameInput.setAttribute("placeholder", "Enter your username");
+
+    usernameGroup.appendChild(usernameLabel);
+    usernameGroup.appendChild(usernameInput);
 
     // Tạo group cho email
     const emailGroup = document.createElement("div");
@@ -50,6 +66,22 @@ export default class Login {
     passwordGroup.appendChild(passwordLabel);
     passwordGroup.appendChild(passwordInput);
 
+    // Tạo group cho confirm password
+    const confirmPasswordGroup = document.createElement("div");
+    confirmPasswordGroup.className = "mb-3";
+    const confirmPasswordLabel = document.createElement("label");
+    confirmPasswordLabel.className = "form-label";
+    confirmPasswordLabel.setAttribute("for", "confirm-password");
+    confirmPasswordLabel.innerText = "Confirm password";
+    const confirmPasswordInput = document.createElement("input");
+    confirmPasswordInput.className = "form-control";
+    confirmPasswordInput.setAttribute("type", "password");
+    confirmPasswordInput.setAttribute("id", "confirm-password");
+    confirmPasswordInput.setAttribute("placeholder", "Confirm your password");
+
+    confirmPasswordGroup.appendChild(confirmPasswordLabel);
+    confirmPasswordGroup.appendChild(confirmPasswordInput);
+
     // button group
     const buttonGroup = document.createElement("div");
     buttonGroup.style =
@@ -59,12 +91,12 @@ export default class Login {
     const submitButton = document.createElement("button");
     submitButton.className = "btn btn-primary px-5";
     submitButton.setAttribute("type", "submit");
-    submitButton.innerText = "Login";
+    submitButton.innerText = "Register";
 
     // Tao link dan den register
     const registerDiv = document.createElement("div");
     registerDiv.style.textAlign = "left";
-    registerDiv.innerHTML = `<a href='#'>Create account</a>`;
+    registerDiv.innerHTML = `<a href='#'>Login here</a>`;
 
     // add in button group
     buttonGroup.appendChild(registerDiv);
@@ -72,8 +104,10 @@ export default class Login {
 
     // Thêm tất cả vào form
     form.appendChild(title);
+    form.appendChild(usernameGroup);
     form.appendChild(emailGroup);
     form.appendChild(passwordGroup);
+    form.appendChild(confirmPasswordGroup);
     form.appendChild(buttonGroup);
 
     // add vao mainContainer
