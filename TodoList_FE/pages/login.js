@@ -1,3 +1,11 @@
+import app from "../app.js";
+import Register from "./register.js";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+} from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+import firebaseApp from "../data/firebase-app.js";
+
 export default class Login {
   constructor() {}
 
@@ -64,7 +72,10 @@ export default class Login {
     // Tao link dan den register
     const registerDiv = document.createElement("div");
     registerDiv.style.textAlign = "left";
-    registerDiv.innerHTML = `<a href='#'>Create account</a>`;
+    registerDiv.innerHTML = `<a href='#' id="register-link">Create account</a>`;
+    // bat su kien cho link chuyen trang register
+    // bind: tim kiem ham trong object hien tai -> this khong bi out
+    registerDiv.addEventListener("click", this.getRegister.bind(this));
 
     // add in button group
     buttonGroup.appendChild(registerDiv);
@@ -79,5 +90,32 @@ export default class Login {
     // add vao mainContainer
     containerDiv.appendChild(form);
     mainContainer.appendChild(containerDiv);
+  }
+
+  getRegister() {
+    const register = new Register();
+    app.renderComponent(register);
+  }
+
+  checkLogin() {
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+    // khong nhap du du lieu
+    if (!(email && password)) alert("Vui long nhap du thong tin");
+    else {
+      // co du du lieu -> check auth tren firebase
+
+      const auth = getAuth(firebaseApp);
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+        });
+    }
   }
 }
