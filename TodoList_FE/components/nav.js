@@ -1,3 +1,6 @@
+import app from "../app.js";
+import Login from "../pages/login.js";
+
 export default class Nav {
   constructor() {}
 
@@ -50,7 +53,8 @@ export default class Nav {
   }
 
   gotoLogin() {
-    window.location.href = "./pages/login.html";
+    const login = new Login();
+    app.renderComponent(login);
   }
 
   gotoLogout() {

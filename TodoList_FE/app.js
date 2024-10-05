@@ -3,13 +3,14 @@ import Login from "./pages/login.js";
 import Register from "./pages/register.js";
 
 class App {
-  constructor(component) {
-    this.component = component;
+  constructor() {
     this.mainContainer = document.getElementById("app");
   }
 
-  renderComponent() {
-    this.component.render(this.mainContainer);
+  renderComponent(component) {
+    // xoa du lieu cu -> add component moi 
+    this.mainContainer.innerHTML = "";
+    component.render(this.mainContainer);
   }
 }
 
@@ -18,8 +19,8 @@ const login = new Login();
 const register = new Register();
 
 // 1 project = 1 app
-const app = new App(register);
+const app = new App();
 // render giao dien
-app.renderComponent();
+app.renderComponent(login);
 
 export default app;
